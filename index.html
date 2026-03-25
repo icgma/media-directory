@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全球与中国主要媒体目录 | Global & Chinese Media Directory</title>
+    <meta name="description" content="收录全球及中国约90家主要媒体的网址、类型与简介，按地区和媒体类型双维度分类索引。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ============ Design Tokens ============ */
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #111827;
+            --bg-card: #1a2035;
+            --bg-card-hover: #1f2847;
+            --bg-glass: rgba(26, 32, 53, 0.7);
+            --border-subtle: rgba(148, 163, 184, 0.08);
+            --border-glow: rgba(99, 102, 241, 0.3);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-tertiary: #64748b;
+            --accent-indigo: #818cf8;
+            --accent-blue: #60a5fa;
+            --accent-cyan: #22d3ee;
+            --accent-emerald: #34d399;
+            --accent-amber: #fbbf24;
+            --accent-rose: #fb7185;
+            --accent-violet: #a78bfa;
+            --accent-orange: #fb923c;
+            --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-card: linear-gradient(145deg, rgba(99,102,241,0.05) 0%, rgba(168,85,247,0.05) 100%);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.4);
+            --shadow-glow: 0 0 30px rgba(99,102,241,0.15);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ============ Reset & Base ============ */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* ============ Ambient Background ============ */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 20% 20%, rgba(99,102,241,0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 80%, rgba(168,85,247,0.06) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 50%, rgba(34,211,238,0.04) 0%, transparent 50%);
+            z-index: -1;
+            animation: ambientDrift 25s ease-in-out infinite alternate;
+        }
+        @keyframes ambientDrift {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-3%, -3%) rotate(3deg); }
+        }
+
+        /* ============ Header / Hero ============ */
+        .hero {
+            position: relative;
+            padding: 80px 24px 60px;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-glow), transparent);
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 16px;
+            background: rgba(99,102,241,0.1);
+            border: 1px solid rgba(99,102,241,0.2);
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--accent-indigo);
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+            animation: fadeInDown 0.6s ease-out;
+        }
+        .hero-badge .dot {
+            width: 6px; height: 6px;
+            background: var(--accent-emerald);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #f1f5f9 0%, #818cf8 50%, #22d3ee 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+        .hero p {
+            max-width: 640px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            animation: fadeInDown 1s ease-out;
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============ Stats Bar ============ */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            padding: 32px 24px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+            animation: fadeIn 1.2s ease-out;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-indigo), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* ============ Navigation Tabs ============ */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        .nav-section {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 14, 26, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 12px 0;
+        }
+        .nav-tabs {
+            display: flex;
+            gap: 4px;
+            overflow-x: auto;
+            padding: 4px;
+            scrollbar-width: none;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .nav-tabs::-webkit-scrollbar { display: none; }
+        .nav-tab {
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            white-space: nowrap;
+            border: 1px solid transparent;
+            transition: var(--transition);
+            background: transparent;
+        }
+        .nav-tab:hover {
+            color: var(--text-primary);
+            background: rgba(99,102,241,0.1);
+        }
+        .nav-tab.active {
+            color: var(--accent-indigo);
+            background: rgba(99,102,241,0.12);
+            border-color: rgba(99,102,241,0.25);
+        }
+
+        /* ============ View Toggle ============ */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0 16px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .view-toggle {
+            display: flex;
+            gap: 4px;
+            background: var(--bg-secondary);
+            padding: 4px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-subtle);
+        }
+        .toggle-btn {
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+        .toggle-btn.active {
+            background: rgba(99,102,241,0.15);
+            color: var(--accent-indigo);
+        }
+        .search-box {
+            position: relative;
+        }
+        .search-box input {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            padding: 8px 14px 8px 36px;
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            width: 260px;
+            outline: none;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+        .search-box input:focus {
+            border-color: var(--border-glow);
+            box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
+        }
+        .search-box input::placeholder { color: var(--text-tertiary); }
+        .search-box svg {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            color: var(--text-tertiary);
+        }
+
+        /* ============ Sections ============ */
+        .section {
+            padding: 40px 0;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        .section-count {
+            margin-left: auto;
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            background: var(--bg-card);
+            padding: 4px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        /* ============ Card Grid ============ */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 16px;
+        }
+        .media-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            transition: var(--transition);
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+        .media-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: var(--card-accent, var(--accent-indigo));
+            opacity: 0;
+            transition: var(--transition);
+        }
+        .media-card:hover {
+            border-color: rgba(99,102,241,0.2);
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+        .media-card:hover::before { opacity: 1; }
+
+        .card-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        .card-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+        .card-name-en {
+            font-size: 0.78rem;
+            color: var(--text-tertiary);
+            margin-top: 2px;
+        }
+        .card-type-badge {
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            white-space: nowrap;
+            flex-shrink: 0;
+            letter-spacing: 0.3px;
+        }
+        .card-desc {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 14px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .card-url {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            color: var(--accent-blue);
+            text-decoration: none;
+            padding: 4px 10px;
+            background: rgba(96,165,250,0.08);
+            border-radius: 6px;
+            transition: var(--transition);
+            word-break: break-all;
+        }
+        .card-url:hover {
+            background: rgba(96,165,250,0.15);
+            color: var(--accent-cyan);
+        }
+        .card-url svg {
+            width: 12px; height: 12px;
+            flex-shrink: 0;
+        }
+
+        /* ============ Table View ============ */
+        .table-view { display: none; }
+        .table-view.active { display: block; }
+        .card-grid.active { display: grid; }
+        .card-grid:not(.active) { display: none; }
+
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+        }
+        .data-table th {
+            background: rgba(99,102,241,0.08);
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .data-table td {
+            padding: 12px 16px;
+            font-size: 0.85rem;
+            border-bottom: 1px solid var(--border-subtle);
+            transition: var(--transition);
+        }
+        .data-table tr:last-child td { border-bottom: none; }
+        .data-table tbody tr:hover td {
+            background: rgba(99,102,241,0.04);
+        }
+        .table-link {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        .table-link:hover { color: var(--accent-cyan); text-decoration: underline; }
+
+        /* ============ Type Badge Colors ============ */
+        .type-通讯社 { background: rgba(99,102,241,0.12); color: var(--accent-indigo); }
+        .type-日报, .type-党报 { background: rgba(251,113,133,0.12); color: var(--accent-rose); }
+        .type-电视, .type-广播电视, .type-广播 { background: rgba(34,211,238,0.12); color: var(--accent-cyan); }
+        .type-周报, .type-周刊, .type-杂志 { background: rgba(167,139,250,0.12); color: var(--accent-violet); }
+        .type-门户网站 { background: rgba(251,191,36,0.12); color: var(--accent-amber); }
+        .type-新媒体, .type-聚合平台 { background: rgba(52,211,153,0.12); color: var(--accent-emerald); }
+
+        /* ============ Footer ============ */
+        footer {
+            text-align: center;
+            padding: 48px 24px;
+            border-top: 1px solid var(--border-subtle);
+            margin-top: 40px;
+        }
+        footer p {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+        }
+        footer a { color: var(--accent-indigo); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+        /* ============ Responsive ============ */
+        @media (max-width: 768px) {
+            .hero { padding: 60px 16px 40px; }
+            .card-grid { grid-template-columns: 1fr; }
+            .stats-bar { gap: 20px; }
+            .controls { flex-direction: column; align-items: stretch; }
+            .search-box input { width: 100%; }
+            .nav-tabs { justify-content: flex-start; }
+        }
+
+        /* ============ Scroll reveal ============ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<!-- ====== Hero ====== -->
+<header class="hero">
+    <div class="hero-badge"><span class="dot"></span> 教学数据集 · Teaching Dataset</div>
+    <h1>全球与中国主要媒体目录</h1>
+    <p>收录全球约 90 家主要媒体的网址、类型与简介，按地区和媒体类型双维度分类索引。</p>
+</header>
+
+<!-- ====== Stats ====== -->
+<div class="stats-bar">
+    <div class="stat-item">
+        <div class="stat-number" id="stat-total">0</div>
+        <div class="stat-label">媒体总数</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number" id="stat-countries">0</div>
+        <div class="stat-label">国家/地区</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number" id="stat-types">0</div>
+        <div class="stat-label">媒体类型</div>
+    </div>
+</div>
+
+<!-- ====== Sticky Nav ====== -->
+<nav class="nav-section">
+    <div class="container">
+        <div class="nav-tabs" id="navTabs"></div>
+    </div>
+</nav>
+
+<!-- ====== Controls ====== -->
+<div class="container">
+    <div class="controls">
+        <div class="view-toggle">
+            <button class="toggle-btn active" data-view="card" id="btn-card">🃏 卡片</button>
+            <button class="toggle-btn" data-view="table" id="btn-table">📊 表格</button>
+        </div>
+        <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="text" id="searchInput" placeholder="搜索媒体名称、类型或国家…">
+        </div>
+    </div>
+</div>
+
+<!-- ====== Main Content ====== -->
+<main class="container" id="mainContent"></main>
+
+<!-- ====== Footer ====== -->
+<footer>
+    <p>本目录仅供教学与学术研究使用。各媒体名称及网址的商标权和版权归其各自所有者。</p>
+    <p style="margin-top:8px;">Made for <a href="#">基础编程课程</a> · 2026</p>
+</footer>
+
+<script>
+// ============ DATA ============
+const MEDIA_DATA = [
+    // ---- 中国 · 中央级媒体 ----
+    { name:"人民日报",nameEn:"People's Daily",type:"党报",region:"中国",sub:"中央级媒体",url:"https://www.people.com.cn",desc:"中国共产党中央委员会机关报，中国最具权威性的综合性日报，创刊于1948年。" },
+    { name:"新华社",nameEn:"Xinhua News Agency",type:"通讯社",region:"中国",sub:"中央级媒体",url:"https://www.xinhuanet.com",desc:"中华人民共和国国家通讯社，全球最大的通讯社之一，提供多语种新闻服务。" },
+    { name:"中央广播电视总台",nameEn:"CCTV / CMG",type:"广播电视",region:"中国",sub:"中央级媒体",url:"https://www.cctv.com",desc:"中国国家级广播电视机构，涵盖电视、广播和新媒体。" },
+    { name:"中国日报",nameEn:"China Daily",type:"日报",region:"中国",sub:"中央级媒体",url:"https://www.chinadaily.com.cn",desc:"中国最大的英文报纸，面向国际读者报道中国新闻与时事。" },
+    { name:"光明日报",nameEn:"Guangming Daily",type:"党报",region:"中国",sub:"中央级媒体",url:"https://www.gmw.cn",desc:"中共中央主办全国性日报，侧重知识分子群体，以文化、教育和科技报道见长。" },
+    { name:"经济日报",nameEn:"Economic Daily",type:"日报",region:"中国",sub:"中央级媒体",url:"https://www.ce.cn",desc:"国务院主办的中央级经济类综合日报，聚焦宏观经济政策与产业分析。" },
+    { name:"中国青年报",nameEn:"China Youth Daily",type:"日报",region:"中国",sub:"中央级媒体",url:"https://www.cyol.com",desc:"共青团中央机关报，关注青年议题、教育与社会热点。" },
+    { name:"法治日报",nameEn:"Legal Daily",type:"日报",region:"中国",sub:"中央级媒体",url:"https://www.legaldaily.com.cn",desc:"中央政法委机关报（原法制日报），聚焦法治建设与司法改革。" },
+    { name:"中国新闻社",nameEn:"China News Service",type:"通讯社",region:"中国",sub:"中央级媒体",url:"https://www.chinanews.com.cn",desc:"中国第二大通讯社，面向海外华侨华人和港澳台地区。" },
+    { name:"环球时报",nameEn:"Global Times",type:"日报",region:"中国",sub:"中央级媒体",url:"https://www.globaltimes.cn",desc:"人民日报社主办国际新闻报纸，以评论风格鲜明著称，有中英文版。" },
+    { name:"参考消息",nameEn:"Reference News",type:"日报",region:"中国",sub:"中央级媒体",url:"http://www.cankaoxiaoxi.com",desc:"新华社主办，以翻译和转载外国媒体报道为特色的日报。" },
+
+    // ---- 中国 · 市场化与财经 ----
+    { name:"澎湃新闻",nameEn:"The Paper",type:"新媒体",region:"中国",sub:"市场化媒体",url:"https://www.thepaper.cn",desc:"上海报业集团旗下新媒体，以时政与思想类深度报道闻名。" },
+    { name:"财新传媒",nameEn:"Caixin Media",type:"杂志",region:"中国",sub:"市场化媒体",url:"https://www.caixin.com",desc:"中国顶级财经调查报道媒体，以深度调查和独家新闻著称。" },
+    { name:"第一财经",nameEn:"Yicai / CBN",type:"广播电视",region:"中国",sub:"市场化媒体",url:"https://www.yicai.com",desc:"上海文广集团旗下跨媒体财经平台，覆盖电视、日报、网站和广播。" },
+    { name:"每日经济新闻",nameEn:"NBD",type:"日报",region:"中国",sub:"市场化媒体",url:"https://www.nbd.com.cn",desc:"全国性财经日报，提供实时财经资讯和证券市场分析。" },
+    { name:"21世纪经济报道",nameEn:"21st Century Business Herald",type:"日报",region:"中国",sub:"市场化媒体",url:"https://www.21jingji.com",desc:"南方报业旗下财经日报，深耕宏观经济、资本市场与产业趋势报道。" },
+    { name:"南方都市报",nameEn:"Southern Metropolis Daily",type:"日报",region:"中国",sub:"市场化媒体",url:"https://www.nandu.com",desc:"南方报业传媒集团旗下，以都市新闻和舆论监督著称。" },
+    { name:"南方周末",nameEn:"Southern Weekly",type:"周报",region:"中国",sub:"市场化媒体",url:"https://www.infzm.com",desc:"南方报业传媒集团旗下周报，以深度调查性报道和人文关怀闻名。" },
+    { name:"新京报",nameEn:"The Beijing News",type:"日报",region:"中国",sub:"市场化媒体",url:"https://www.bjnews.com.cn",desc:"北京地区综合性日报，以时政、社会深度报道见长。" },
+    { name:"界面新闻",nameEn:"Jiemian",type:"新媒体",region:"中国",sub:"市场化媒体",url:"https://www.jiemian.com",desc:"商业新闻平台，聚焦商业、金融和科技领域。" },
+    { name:"36氪",nameEn:"36Kr",type:"新媒体",region:"中国",sub:"市场化媒体",url:"https://36kr.com",desc:"中国领先的科技创业媒体，聚焦创新创业、投融资和新经济。" },
+
+    // ---- 中国 · 门户与新媒体 ----
+    { name:"新浪新闻",nameEn:"Sina News",type:"门户网站",region:"中国",sub:"门户与新媒体",url:"https://news.sina.com.cn",desc:"中国最早的门户新闻网站之一，提供全面的新闻聚合和评论服务。" },
+    { name:"网易新闻",nameEn:"NetEase News",type:"门户网站",region:"中国",sub:"门户与新媒体",url:"https://news.163.com",desc:"网易旗下新闻平台，以用户跟帖文化和'有态度'的新闻品牌著称。" },
+    { name:"腾讯新闻",nameEn:"Tencent News",type:"门户网站",region:"中国",sub:"门户与新媒体",url:"https://news.qq.com",desc:"腾讯旗下新闻门户，借助微信与QQ生态拥有海量用户覆盖。" },
+    { name:"搜狐新闻",nameEn:"Sohu News",type:"门户网站",region:"中国",sub:"门户与新媒体",url:"https://news.sohu.com",desc:"搜狐旗下新闻频道，中国老牌门户之一。" },
+    { name:"今日头条",nameEn:"Toutiao",type:"聚合平台",region:"中国",sub:"门户与新媒体",url:"https://www.toutiao.com",desc:"字节跳动旗下智能信息推荐平台，基于算法实现个性化新闻分发。" },
+    { name:"观察者网",nameEn:"Guancha.cn",type:"新媒体",region:"中国",sub:"门户与新媒体",url:"https://www.guancha.cn",desc:"独立互联网媒体，以国际关系和时政分析著名。" },
+    { name:"虎嗅",nameEn:"Huxiu",type:"新媒体",region:"中国",sub:"门户与新媒体",url:"https://www.huxiu.com",desc:"科技商业资讯平台，聚焦互联网、创投和商业创新。" },
+
+    // ---- 港澳台 ----
+    { name:"南华早报",nameEn:"South China Morning Post",type:"日报",region:"中国香港",sub:"港澳台",url:"https://www.scmp.com",desc:"香港最具影响力的英文报纸，创刊于1903年。" },
+    { name:"香港電台",nameEn:"RTHK",type:"广播电视",region:"中国香港",sub:"港澳台",url:"https://www.rthk.hk",desc:"香港公共广播机构，提供粤语、英语及普通话新闻与节目。" },
+    { name:"明報",nameEn:"Ming Pao",type:"日报",region:"中国香港",sub:"港澳台",url:"https://www.mingpao.com",desc:"香港中文知识型报纸，由金庸（查良镛）于1959年创办。" },
+    { name:"聯合報",nameEn:"United Daily News",type:"日报",region:"中国台湾",sub:"港澳台",url:"https://udn.com",desc:"台湾主要中文日报之一，综合性新闻门户。" },
+    { name:"中時新聞網",nameEn:"China Times",type:"日报",region:"中国台湾",sub:"港澳台",url:"https://www.chinatimes.com",desc:"台湾《中国时报》旗下新闻网站。" },
+    { name:"自由時報",nameEn:"Liberty Times",type:"日报",region:"中国台湾",sub:"港澳台",url:"https://www.ltn.com.tw",desc:"台湾主要日报之一，全台发行量领先。" },
+
+    // ---- 美国 ----
+    { name:"纽约时报",nameEn:"The New York Times",type:"日报",region:"美国",sub:"美国",url:"https://www.nytimes.com",desc:"美国最具影响力的日报之一，创刊于1851年，曾获超130项普利策奖。" },
+    { name:"华盛顿邮报",nameEn:"The Washington Post",type:"日报",region:"美国",sub:"美国",url:"https://www.washingtonpost.com",desc:"美国首都华盛顿特区旗舰报纸，以政治新闻和调查报道见长。" },
+    { name:"华尔街日报",nameEn:"The Wall Street Journal",type:"日报",region:"美国",sub:"美国",url:"https://www.wsj.com",desc:"全球最权威的财经日报之一，以金融市场和商业新闻报道为核心。" },
+    { name:"美联社",nameEn:"Associated Press (AP)",type:"通讯社",region:"美国",sub:"美国",url:"https://apnews.com",desc:"全球最大的非营利性通讯社之一，创立于1846年。" },
+    { name:"CNN",nameEn:"CNN",type:"广播电视",region:"美国",sub:"美国",url:"https://www.cnn.com",desc:"全球首家24小时全天候播出的电视新闻网。" },
+    { name:"福克斯新闻",nameEn:"Fox News",type:"广播电视",region:"美国",sub:"美国",url:"https://www.foxnews.com",desc:"美国收视率最高的有线新闻频道，定位偏保守派。" },
+    { name:"NPR",nameEn:"National Public Radio",type:"广播电视",region:"美国",sub:"美国",url:"https://www.npr.org",desc:"美国非营利性公共广播组织，以高质量的新闻播报和深度专题节目著称。" },
+    { name:"彭博社",nameEn:"Bloomberg",type:"通讯社",region:"美国",sub:"美国",url:"https://www.bloomberg.com",desc:"全球领先的金融数据与商业新闻机构。" },
+    { name:"CNBC",nameEn:"CNBC",type:"广播电视",region:"美国",sub:"美国",url:"https://www.cnbc.com",desc:"NBC 旗下财经新闻频道，专注全球商业与金融市场。" },
+    { name:"Politico",nameEn:"Politico",type:"新媒体",region:"美国",sub:"美国",url:"https://www.politico.com",desc:"专注美国政治与政策的新闻媒体。" },
+    { name:"The Atlantic",nameEn:"The Atlantic",type:"杂志",region:"美国",sub:"美国",url:"https://www.theatlantic.com",desc:"美国著名文化与政论杂志，创刊于1857年。" },
+    { name:"Vox",nameEn:"Vox",type:"新媒体",region:"美国",sub:"美国",url:"https://www.vox.com",desc:"解释型新闻（Explanatory Journalism）媒体，以数据驱动和可视化叙事见长。" },
+
+    // ---- 英国 ----
+    { name:"BBC",nameEn:"BBC News",type:"广播电视",region:"英国",sub:"英国",url:"https://www.bbc.com/news",desc:"英国广播公司新闻部，全球最大的公共广播新闻机构。" },
+    { name:"卫报",nameEn:"The Guardian",type:"日报",region:"英国",sub:"英国",url:"https://www.theguardian.com",desc:"英国著名左倾自由派日报，创刊于1821年。" },
+    { name:"金融时报",nameEn:"Financial Times",type:"日报",region:"英国",sub:"英国",url:"https://www.ft.com",desc:"全球顶级财经日报，以国际商业和经济新闻为核心。" },
+    { name:"路透社",nameEn:"Reuters",type:"通讯社",region:"英国",sub:"英国",url:"https://www.reuters.com",desc:"全球最大国际通讯社之一，现为汤森路透旗下。" },
+    { name:"泰晤士报",nameEn:"The Times",type:"日报",region:"英国",sub:"英国",url:"https://www.thetimes.com",desc:"英国历史最悠久的日报之一，创刊于1785年。" },
+    { name:"经济学人",nameEn:"The Economist",type:"周刊",region:"英国",sub:"英国",url:"https://www.economist.com",desc:"全球最具影响力的政经周刊之一，创刊于1843年。" },
+    { name:"每日电讯报",nameEn:"The Telegraph",type:"日报",region:"英国",sub:"英国",url:"https://www.telegraph.co.uk",desc:"英国发行量最大的大开本日报之一。" },
+
+    // ---- 欧洲大陆 ----
+    { name:"法新社",nameEn:"AFP",type:"通讯社",region:"法国",sub:"欧洲大陆",url:"https://www.afp.com",desc:"全球三大通讯社之一，创立于1835年，提供六种语言服务。" },
+    { name:"世界报",nameEn:"Le Monde",type:"日报",region:"法国",sub:"欧洲大陆",url:"https://www.lemonde.fr",desc:"法国最具影响力的日报，创刊于1944年。" },
+    { name:"明镜周刊",nameEn:"Der Spiegel",type:"周刊",region:"德国",sub:"欧洲大陆",url:"https://www.spiegel.de",desc:"德国最大的新闻杂志，以调查性报道和政治评论闻名。" },
+    { name:"时代周报",nameEn:"Die Zeit",type:"周报",region:"德国",sub:"欧洲大陆",url:"https://www.zeit.de",desc:"德国全国性周报，以文化、社会和政治深度分析著称。" },
+    { name:"共和报",nameEn:"La Repubblica",type:"日报",region:"意大利",sub:"欧洲大陆",url:"https://www.repubblica.it",desc:"意大利主要日报之一，定位中左。" },
+    { name:"国家报",nameEn:"El País",type:"日报",region:"西班牙",sub:"欧洲大陆",url:"https://elpais.com",desc:"西班牙发行量最大的日报，西班牙语世界影响力巨大。" },
+    { name:"NOS",nameEn:"NOS Nieuws",type:"广播电视",region:"荷兰",sub:"欧洲大陆",url:"https://nos.nl",desc:"荷兰公共广播新闻机构。" },
+
+    // ---- 亚太 ----
+    { name:"NHK",nameEn:"NHK World",type:"广播电视",region:"日本",sub:"亚太地区",url:"https://www3.nhk.or.jp",desc:"日本唯一的公共广播机构，提供多语种新闻服务。" },
+    { name:"朝日新闻",nameEn:"Asahi Shimbun",type:"日报",region:"日本",sub:"亚太地区",url:"https://www.asahi.com",desc:"日本五大全国性日报之一，以社论和深度报道闻名。" },
+    { name:"读卖新闻",nameEn:"Yomiuri Shimbun",type:"日报",region:"日本",sub:"亚太地区",url:"https://www.yomiuri.co.jp",desc:"日本发行量最大的报纸。" },
+    { name:"韩联社",nameEn:"Yonhap News",type:"通讯社",region:"韩国",sub:"亚太地区",url:"https://www.yna.co.kr",desc:"韩国最大的通讯社，提供韩英中日多语种新闻。" },
+    { name:"朝鲜日报",nameEn:"Chosun Ilbo",type:"日报",region:"韩国",sub:"亚太地区",url:"https://www.chosun.com",desc:"韩国历史最悠久的日报之一。" },
+    { name:"海峡时报",nameEn:"The Straits Times",type:"日报",region:"新加坡",sub:"亚太地区",url:"https://www.straitstimes.com",desc:"新加坡最大的英文日报，东南亚最具影响力的英文媒体之一。" },
+    { name:"印度时报",nameEn:"The Times of India",type:"日报",region:"印度",sub:"亚太地区",url:"https://timesofindia.indiatimes.com",desc:"全球发行量最大的英文日报。" },
+    { name:"NDTV",nameEn:"NDTV",type:"广播电视",region:"印度",sub:"亚太地区",url:"https://www.ndtv.com",desc:"印度领先的电视新闻网络。" },
+    { name:"ABC",nameEn:"Australian Broadcasting Corporation",type:"广播电视",region:"澳大利亚",sub:"亚太地区",url:"https://www.abc.net.au",desc:"澳大利亚国家公共广播媒体。" },
+
+    // ---- 中东/非洲 ----
+    { name:"半岛电视台",nameEn:"Al Jazeera",type:"广播电视",region:"卡塔尔",sub:"中东与非洲",url:"https://www.aljazeera.com",desc:"总部位于卡塔尔多哈，提供阿拉伯语和英语新闻。" },
+    { name:"阿拉伯新闻",nameEn:"Arab News",type:"日报",region:"沙特阿拉伯",sub:"中东与非洲",url:"https://www.arabnews.com",desc:"沙特阿拉伯最大的英文日报。" },
+    { name:"Mail & Guardian",nameEn:"Mail & Guardian",type:"周报",region:"南非",sub:"中东与非洲",url:"https://mg.co.za",desc:"南非主要独立新闻周报。" },
+
+    // ---- 拉美 ----
+    { name:"圣保罗页报",nameEn:"Folha de S.Paulo",type:"日报",region:"巴西",sub:"拉丁美洲",url:"https://www.folha.uol.com.br",desc:"巴西发行量最大的日报。" },
+    { name:"号角报",nameEn:"Clarín",type:"日报",region:"阿根廷",sub:"拉丁美洲",url:"https://www.clarin.com",desc:"阿根廷发行量最大的日报。" },
+    { name:"改革报",nameEn:"Reforma",type:"日报",region:"墨西哥",sub:"拉丁美洲",url:"https://www.reforma.com",desc:"墨西哥最具影响力的日报之一。" },
+
+    // ---- 通讯社补充 ----
+    { name:"共同社",nameEn:"Kyodo News",type:"通讯社",region:"日本",sub:"亚太地区",url:"https://www.kyodonews.net",desc:"日本最大的非政府通讯社。" },
+    { name:"德新社",nameEn:"DPA",type:"通讯社",region:"德国",sub:"欧洲大陆",url:"https://www.dpa.com",desc:"德国最大的通讯社。" },
+    { name:"安莎社",nameEn:"ANSA",type:"通讯社",region:"意大利",sub:"欧洲大陆",url:"https://www.ansa.it",desc:"意大利最大的通讯社。" },
+    { name:"塔斯社",nameEn:"TASS",type:"通讯社",region:"俄罗斯",sub:"欧洲大陆",url:"https://tass.com",desc:"俄罗斯官方通讯社。" },
+];
+
+// ============ SECTION CONFIG ============
+const SECTIONS = [
+    { key:"all",     label:"全部",        icon:"🌐", color:"var(--accent-indigo)" },
+    { key:"中央级媒体",label:"🇨🇳 中央媒体", icon:"🏛️", color:"var(--accent-rose)" },
+    { key:"市场化媒体",label:"🇨🇳 市场化",   icon:"📰", color:"var(--accent-amber)" },
+    { key:"门户与新媒体",label:"🇨🇳 门户/新媒体",icon:"📱", color:"var(--accent-emerald)" },
+    { key:"港澳台",   label:"🇭🇰🇹🇼 港澳台", icon:"🌆", color:"var(--accent-violet)" },
+    { key:"美国",     label:"🇺🇸 美国",     icon:"🗽", color:"var(--accent-blue)" },
+    { key:"英国",     label:"🇬🇧 英国",     icon:"🎡", color:"var(--accent-cyan)" },
+    { key:"欧洲大陆", label:"🇪🇺 欧洲",     icon:"🏰", color:"var(--accent-violet)" },
+    { key:"亚太地区", label:"🌏 亚太",      icon:"⛩️", color:"var(--accent-orange)" },
+    { key:"中东与非洲",label:"🌍 中东/非洲",  icon:"🕌", color:"var(--accent-amber)" },
+    { key:"拉丁美洲", label:"🌎 拉美",      icon:"🌮", color:"var(--accent-emerald)" },
+];
+
+const TYPE_SECTIONS = [
+    { key:"type-通讯社",  label:"通讯社" },
+    { key:"type-日报",    label:"日报/党报" },
+    { key:"type-广播电视", label:"广播电视" },
+    { key:"type-周刊",    label:"周报/周刊/杂志" },
+    { key:"type-门户网站", label:"门户网站" },
+    { key:"type-新媒体",  label:"新媒体/聚合平台" },
+];
+
+// ============ STATE ============
+let currentFilter = 'all';
+let currentView = 'card';
+let searchQuery = '';
+
+// ============ RENDER ============
+function getTypeBadgeClass(type) {
+    const map = { '通讯社':'type-通讯社','日报':'type-日报','党报':'type-党报','广播电视':'type-广播电视',
+        '广播':'type-广播电视','电视':'type-电视','周刊':'type-周刊','周报':'type-周报',
+        '杂志':'type-杂志','门户网站':'type-门户网站','新媒体':'type-新媒体','聚合平台':'type-聚合平台' };
+    return map[type] || '';
+}
+
+function filterData() {
+    let data = MEDIA_DATA;
+    if (currentFilter !== 'all') {
+        if (currentFilter.startsWith('type-')) {
+            const t = currentFilter.replace('type-','');
+            data = data.filter(m => {
+                if (t === '日报') return m.type === '日报' || m.type === '党报';
+                if (t === '广播电视') return ['广播电视','广播','电视'].includes(m.type);
+                if (t === '周刊') return ['周刊','周报','杂志'].includes(m.type);
+                if (t === '新媒体') return m.type === '新媒体' || m.type === '聚合平台';
+                return m.type === t;
+            });
+        } else {
+            data = data.filter(m => m.sub === currentFilter);
+        }
+    }
+    if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        data = data.filter(m =>
+            m.name.toLowerCase().includes(q) ||
+            (m.nameEn && m.nameEn.toLowerCase().includes(q)) ||
+            m.type.toLowerCase().includes(q) ||
+            m.region.toLowerCase().includes(q) ||
+            m.desc.toLowerCase().includes(q)
+        );
+    }
+    return data;
+}
+
+function renderCards(data) {
+    if (data.length === 0) return '<p style="text-align:center;color:var(--text-tertiary);padding:60px 0;">没有匹配的媒体 🔍</p>';
+    return `<div class="card-grid active">${data.map(m => `
+        <div class="media-card">
+            <div class="card-top">
+                <div>
+                    <div class="card-name">${m.name}</div>
+                    ${m.nameEn ? `<div class="card-name-en">${m.nameEn}</div>` : ''}
+                </div>
+                <span class="card-type-badge ${getTypeBadgeClass(m.type)}">${m.type}</span>
+            </div>
+            <div class="card-desc">${m.desc}</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+                <a href="${m.url}" target="_blank" rel="noopener" class="card-url">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    ${m.url.replace(/^https?:\/\//,'').replace(/\/$/,'')}
+                </a>
+                <span style="font-size:0.72rem;color:var(--text-tertiary);">${m.region}</span>
+            </div>
+        </div>`).join('')}</div>`;
+}
+
+function renderTable(data) {
+    if (data.length === 0) return '<p style="text-align:center;color:var(--text-tertiary);padding:60px 0;">没有匹配的媒体 🔍</p>';
+    return `<div class="table-view active"><table class="data-table">
+        <thead><tr><th>媒体名称</th><th>英文名</th><th>类型</th><th>国家/地区</th><th>网址</th></tr></thead>
+        <tbody>${data.map(m => `<tr>
+            <td style="font-weight:600;">${m.name}</td>
+            <td style="color:var(--text-secondary);font-size:0.8rem;">${m.nameEn||''}</td>
+            <td><span class="card-type-badge ${getTypeBadgeClass(m.type)}">${m.type}</span></td>
+            <td style="color:var(--text-secondary);">${m.region}</td>
+            <td><a href="${m.url}" target="_blank" rel="noopener" class="table-link">${m.url.replace(/^https?:\/\//,'').replace(/\/$/,'')}</a></td>
+        </tr>`).join('')}</tbody></table></div>`;
+}
+
+function render() {
+    const data = filterData();
+    const main = document.getElementById('mainContent');
+    main.innerHTML = currentView === 'card' ? renderCards(data) : renderTable(data);
+    // animate cards
+    if (currentView === 'card') {
+        main.querySelectorAll('.media-card').forEach((c, i) => {
+            c.style.opacity = '0';
+            c.style.transform = 'translateY(16px)';
+            setTimeout(() => {
+                c.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                c.style.opacity = '1';
+                c.style.transform = 'translateY(0)';
+            }, i * 30);
+        });
+    }
+}
+
+// ============ NAV TABS ============
+function buildNav() {
+    const navTabs = document.getElementById('navTabs');
+    const allTabs = [
+        ...SECTIONS.map(s => ({key:s.key, label:s.label})),
+        {key:'divider', label:'|'},
+        ...TYPE_SECTIONS.map(s => ({key:s.key, label:s.label})),
+    ];
+    navTabs.innerHTML = allTabs.map(t => {
+        if (t.key === 'divider') return '<span style="color:var(--text-tertiary);padding:0 8px;user-select:none;">│</span>';
+        return `<button class="nav-tab${t.key===currentFilter?' active':''}" data-filter="${t.key}">${t.label}</button>`;
+    }).join('');
+}
+
+document.getElementById('navTabs').addEventListener('click', e => {
+    const tab = e.target.closest('.nav-tab');
+    if (!tab) return;
+    currentFilter = tab.dataset.filter;
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.toggle('active', t.dataset.filter === currentFilter));
+    render();
+});
+
+// ============ VIEW TOGGLE ============
+document.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        currentView = btn.dataset.view;
+        document.querySelectorAll('.toggle-btn').forEach(b => b.classList.toggle('active', b.dataset.view === currentView));
+        render();
+    });
+});
+
+// ============ SEARCH ============
+document.getElementById('searchInput').addEventListener('input', e => {
+    searchQuery = e.target.value.trim();
+    render();
+});
+
+// ============ STATS ============
+function updateStats() {
+    const total = MEDIA_DATA.length;
+    const countries = new Set(MEDIA_DATA.map(m => m.region)).size;
+    const types = new Set(MEDIA_DATA.map(m => m.type)).size;
+    animateNumber('stat-total', total);
+    animateNumber('stat-countries', countries);
+    animateNumber('stat-types', types);
+}
+function animateNumber(id, target) {
+    const el = document.getElementById(id);
+    let current = 0;
+    const step = Math.max(1, Math.floor(target / 30));
+    const interval = setInterval(() => {
+        current += step;
+        if (current >= target) { current = target; clearInterval(interval); }
+        el.textContent = current;
+    }, 30);
+}
+
+// ============ INIT ============
+buildNav();
+render();
+updateStats();
+</script>
+</body>
+</html>
